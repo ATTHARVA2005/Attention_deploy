@@ -25,7 +25,11 @@ let webcamStream = null;
 let faceMesh = null;
 
 // Mediapipe setup
-const mpFaceMesh = window.FaceMesh;
+faceMesh = new FaceMesh({
+    locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4/${file}`;
+    }
+});
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', function () {
