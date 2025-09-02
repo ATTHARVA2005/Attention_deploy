@@ -2,8 +2,19 @@
 from flask import Flask, render_template, jsonify, request
 import time
 import threading
-
+from flask import send_from_directory
 app = Flask(__name__, static_folder='static')
+
+@app.route('/static/js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory('static/js', filename, mimetype='application/javascript')
+
+@app.route('/static/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory('static/css', filename, mimetype='text/css')
+
+
+
 
 # Global state variables
 global_state = {
