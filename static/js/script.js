@@ -1,3 +1,4 @@
+console.log("✅ script.js loaded and running");
 // DOM Elements
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
@@ -132,10 +133,12 @@ function onResults(results) {
 }
 
 async function startTracking() {
+    console.log("▶️ Start Tracking button clicked");
     if (isTracking) return;
     console.log('Starting tracking...');
 
     try {
+        console.log("📷 Requesting webcam access…");
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         webcamStream = stream;
         videoStream.srcObject = stream;
@@ -162,6 +165,7 @@ async function startTracking() {
 
         console.log('Tracking started successfully');
     } catch (error) {
+        console.error("❌ Webcam error:", error);
         console.error('Error starting tracking:', error);
         alert('Could not access the webcam. Please ensure you have a camera connected and grant permission.');
         stopTracking();
