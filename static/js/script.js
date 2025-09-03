@@ -1,4 +1,5 @@
 console.log("✅ script.js loaded and running");
+
 // DOM Elements
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
@@ -24,7 +25,7 @@ let sessionStartTime = 0;
 let webcamStream = null;
 let faceMesh = null;
 
-// Mediapipe setup
+// ✅ Single FaceMesh initialization
 faceMesh = new FaceMesh({
     locateFile: (file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4/${file}`;
@@ -45,13 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     videoStream.style.top = '0';
     videoStream.style.left = '0';
 
-    // Initialize MediaPipe FaceMesh
-    faceMesh = new mpFaceMesh.FaceMesh({
-        locateFile: (file) => {
-            return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4/${file}`;
-        }
-    });
-
+    // ✅ Configure FaceMesh
     faceMesh.setOptions({
         maxNumFaces: 1,
         refineLandmarks: true,
@@ -170,7 +165,6 @@ async function startTracking() {
         console.log('Tracking started successfully');
     } catch (error) {
         console.error("❌ Webcam error:", error);
-        console.error('Error starting tracking:', error);
         alert('Could not access the webcam. Please ensure you have a camera connected and grant permission.');
         stopTracking();
     }
