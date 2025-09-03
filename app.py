@@ -3,7 +3,10 @@ from flask import Flask, render_template, jsonify, request
 import time
 import threading
 from flask import send_from_directory
+from flask_cors import CORS
 app = Flask(__name__, static_folder='static')
+CORS(app)
+
 
 @app.route('/static/js/<path:filename>')
 def serve_js(filename):
