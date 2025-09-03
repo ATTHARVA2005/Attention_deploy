@@ -5,7 +5,7 @@ import threading
 from flask import send_from_directory
 from flask_cors import CORS
 app = Flask(__name__, static_folder='static')
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 
 @app.route('/static/js/<path:filename>')
